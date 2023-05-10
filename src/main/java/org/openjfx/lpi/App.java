@@ -8,11 +8,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
 public class App extends Application {
     
     @Override
     public void start(Stage stage) throws IOException {
+
+        org.openjfx.lpi.db.Query.executeSqlFile("SQL/tabelas.sql");
+
         try {
             stage.setScene(new Scene(loadFXML("primary")));
             stage.show();

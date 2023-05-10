@@ -1,5 +1,7 @@
 package org.openjfx.lpi.db;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
@@ -45,6 +47,24 @@ public class Query {
             statement.setString(1, p.getModelo());
             statement.setInt(2, p.getAno());
             statement.execute();
+            conexao.commit();
+            conexao.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void executeSqlFile (String file_path) {
+        try {
+            Connection conexao = new SQLConnection().connect();
+            BufferedReader br = new BufferedReader(new FileReader(file_path));
+            StringBuilder sb = new StringBuilder();
+            String linha;
+            while ((linha = br.readLine()) != null) {
+                sb.append(linha).append(System.lineSeparator());
+            }
+            conexao.createStatement().execute(sb.toString());
+            br.close();
             conexao.commit();
             conexao.close();
         } catch (Exception e) {

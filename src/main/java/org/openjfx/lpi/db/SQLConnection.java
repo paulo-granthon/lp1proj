@@ -24,7 +24,7 @@ public class SQLConnection {
 
         BufferedReader br = null;
         try {
-            br = new BufferedReader(new FileReader("././.env"));
+            br = new BufferedReader(new FileReader(".env"));
 
             for (int i = 0; i < env.length; i++) {
                 env[i] = br.readLine().split(":")[1];                
@@ -55,7 +55,7 @@ public class SQLConnection {
             System.out.println("SQLConnector.connect() -- Erro: Driver do banco de dados não localizado!");
             ex.printStackTrace();
         } catch (SQLException ex) {
-            System.out.println("SQLConnector.connect() -- Erro: ao conectar com o banco de dados!");
+            System.out.println("SQLConnector.connect() -- Erro ao conectar com o banco de dados!");
             ex.printStackTrace();
         } 
         return conexao;
