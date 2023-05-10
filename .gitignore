@@ -1,0 +1,11 @@
+*.env
+bin/
+target/
+*.info
+.vscode/*
+.vscode/
+*.vscode/
+.vscode/settings.json
+*.vscode/settings.json
+.json
+*.jar
