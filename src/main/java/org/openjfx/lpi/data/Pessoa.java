@@ -1,16 +1,16 @@
 package org.openjfx.lpi.data;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class Pessoa {
     String nome;
     String genero;
-    LocalDate nascimento;
+    Date nascimento;
     public Pessoa (
         String nome,
         String genero,
-        LocalDate nascimento
+        Date nascimento
     ) {
         this.nome = nome;
         this.genero = genero;
@@ -18,13 +18,13 @@ public class Pessoa {
     }
     public String getNome() { return nome; }
     public String getGenero() { return genero; }
-    public LocalDate getNascimento() { return nascimento; }
+    public Date getNascimento() { return nascimento; }
     public String getNascimentoString() {
         return new SimpleDateFormat("yyyy-MM-dd").format(nascimento);
     }
     
     public void setNome(String nome) { this.nome = nome; }
     public void setGenero(String genero) { this.genero = genero; }
-    public void setNascimento(LocalDate nascimento) { this.nascimento = nascimento; }
+    public void setNascimento(Date nascimento) { this.nascimento = nascimento; }
 
 }
