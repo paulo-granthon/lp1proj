@@ -29,7 +29,7 @@ public class Query {
             PreparedStatement statement = conexao.prepareStatement("INSERT INTO lugar (pais, estado, cidade) values (?, ?, ?)");
             statement.setString(1, p.getPais());
             statement.setString(2, p.getEstado());
-            statement.setDate(3, p.getCidade());
+            statement.setString(3, p.getCidade());
             statement.execute();
             conexao.commit();
             conexao.close();
@@ -43,7 +43,7 @@ public class Query {
             Connection conexao = new SQLConnection().connect();
             PreparedStatement statement = conexao.prepareStatement("INSERT INTO veiculo (modelo, genero) values (?, ?)");
             statement.setString(1, p.getModelo());
-            statement.setString(2, p.getAno());
+            statement.setInt(2, p.getAno());
             statement.execute();
             conexao.commit();
             conexao.close();

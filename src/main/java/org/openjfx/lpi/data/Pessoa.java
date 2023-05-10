@@ -4,9 +4,11 @@ import java.text.SimpleDateFormat;
 import java.sql.Date;
 
 public class Pessoa {
+
     String nome;
     String genero;
     Date nascimento;
+
     public Pessoa (
         String nome,
         String genero,
@@ -16,6 +18,7 @@ public class Pessoa {
         this.genero = genero;
         this.nascimento = nascimento;
     }
+
     public String getNome() { return nome; }
     public String getGenero() { return genero; }
     public Date getNascimento() { return nascimento; }
