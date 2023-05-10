@@ -14,23 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<TabPane
-    depthTest="DISABLE" 
-    focusTraversable="false" 
-    maxHeight="1.8" maxWidth="1.8" 
-    minHeight="-Infinity" minWidth="-Infinity" 
-    nodeOrientation="LEFT_TO_RIGHT" 
-    prefHeight="400.0" prefWidth="800.0" 
-    rotateGraphic="true" 
-    side="LEFT" 
-    stylesheets="@css/styles.css" 
-    tabClosingPolicy="UNAVAILABLE" 
-    tabMaxWidth="24.0" 
-    tabMinHeight="80.0" 
-    xmlns="http://javafx.com/javafx/19" 
-    xmlns:fx="http://javafx.com/fxml/1" 
-    fx:controller="org.openjfx.lpi.controller.Primary"
->
+<TabPane depthTest="DISABLE" focusTraversable="false" maxHeight="1.8" maxWidth="1.8" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="800.0" rotateGraphic="true" side="LEFT" stylesheets="@css/styles.css" tabClosingPolicy="UNAVAILABLE" tabMaxWidth="24.0" tabMinHeight="80.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.lpi.controller.Primary">
   <tabs>
     <Tab closable="false">
          <content>
@@ -43,11 +27,11 @@
                               <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="8.0" AnchorPane.leftAnchor="0.0">
                                  <children>
                                     <Label text="Nome:" />
-                                    <TextField maxWidth="128.0" />
+                                    <TextField fx:id="tf_person_name" maxWidth="128.0" />
                                     <Label text="Genero:" />
-                                    <TextField maxWidth="128.0" />
+                                    <TextField fx:id="tf_person_gender" maxWidth="128.0" />
                                     <Label text="Nascimento:" />
-                                    <DatePicker maxWidth="128.0" />
+                                    <DatePicker fx:id="dp_person_birth" maxWidth="128.0" />
                                  </children>
                               </HBox>
                               <Button layoutX="540.0" mnemonicParsing="false" prefWidth="88.0" text="+" AnchorPane.rightAnchor="8.0" />
@@ -58,9 +42,9 @@
                         </AnchorPane>
                         <TableView focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                           <columns>
-                            <TableColumn minWidth="-1.0" prefWidth="-1.0" text="Nome" />
-                            <TableColumn minWidth="-1.0" prefWidth="-1.0" text="Gênero" />
-                              <TableColumn minWidth="-1.0" prefWidth="-1.0" text="Nascimento" />
+                            <TableColumn fx:id="col_person_name" minWidth="-1.0" prefWidth="-1.0" text="Nome" />
+                            <TableColumn fx:id="col_person_gender" minWidth="-1.0" prefWidth="-1.0" text="Gênero" />
+                              <TableColumn fx:id="col_person_birth" minWidth="-1.0" prefWidth="-1.0" text="Nascimento" />
                           </columns>
                            <VBox.margin>
                               <Insets bottom="-8.0" left="-8.0" right="-8.0" />
@@ -98,12 +82,12 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="8.0" AnchorPane.leftAnchor="0.0">
                                  <children>
-                                    <Label text="Nome:" />
-                                    <TextField maxWidth="128.0" />
-                                    <Label text="Genero:" />
-                                    <TextField maxWidth="128.0" />
-                                    <Label text="Nascimento:" />
-                                    <DatePicker maxWidth="128.0" />
+                                    <Label text="País:" />
+                                    <TextField fx:id="tf_place_country" maxWidth="128.0" />
+                                    <Label text="Estado:" />
+                                    <TextField fx:id="tf_place_state" maxWidth="128.0" />
+                                    <Label text="Cidade:" />
+                                    <TextField fx:id="tf_place_city" layoutX="225.0" layoutY="10.0" maxWidth="128.0" />
                                  </children>
                               </HBox>
                               <Button layoutX="540.0" mnemonicParsing="false" prefWidth="88.0" text="+" AnchorPane.rightAnchor="8.0" />
@@ -114,9 +98,9 @@
                         </AnchorPane>
                         <TableView focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                            <columns>
-                              <TableColumn minWidth="-1.0" prefWidth="-1.0" text="Nome" />
-                              <TableColumn minWidth="-1.0" prefWidth="-1.0" text="Gênero" />
-                              <TableColumn minWidth="-1.0" prefWidth="-1.0" text="Nascimento" />
+                              <TableColumn fx:id="col_place_country" minWidth="-1.0" prefWidth="-1.0" text="País" />
+                              <TableColumn fx:id="col_place_state" minWidth="-1.0" prefWidth="-1.0" text="Estado" />
+                              <TableColumn fx:id="col_place_city" minWidth="-1.0" prefWidth="-1.0" text="Cidade" />
                            </columns>
                            <VBox.margin>
                               <Insets bottom="-8.0" left="-8.0" right="-8.0" />
@@ -154,12 +138,10 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="8.0" AnchorPane.leftAnchor="0.0">
                                  <children>
-                                    <Label text="Nome:" />
-                                    <TextField maxWidth="128.0" />
-                                    <Label text="Genero:" />
-                                    <TextField maxWidth="128.0" />
-                                    <Label text="Nascimento:" />
-                                    <DatePicker maxWidth="128.0" />
+                                    <Label text="Modelo:" />
+                                    <TextField fx:id="tf_vehicle_model" maxWidth="128.0" />
+                                    <Label text="Ano:" />
+                                    <TextField fx:id="tf_vehicle_year" maxWidth="128.0" />
                                  </children>
                               </HBox>
                               <Button layoutX="540.0" mnemonicParsing="false" prefWidth="88.0" text="+" AnchorPane.rightAnchor="8.0" />
@@ -170,9 +152,8 @@
                         </AnchorPane>
                         <TableView focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                            <columns>
-                              <TableColumn minWidth="-1.0" prefWidth="-1.0" text="Nome" />
-                              <TableColumn minWidth="-1.0" prefWidth="-1.0" text="Gênero" />
-                              <TableColumn minWidth="-1.0" prefWidth="-1.0" text="Nascimento" />
+                              <TableColumn fx:id="col_vehicle_model" minWidth="-1.0" prefWidth="-1.0" text="Modelo" />
+                              <TableColumn fx:id="col_vehicle_year" minWidth="-1.0" prefWidth="-1.0" text="Ano" />
                            </columns>
                            <VBox.margin>
                               <Insets bottom="-8.0" left="-8.0" right="-8.0" />
