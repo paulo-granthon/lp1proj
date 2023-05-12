@@ -162,31 +162,51 @@ public class Primary {
 
     @FXML
     void addPerson (ActionEvent e) {
-        Query.insertPessoa(new Pessoa(
-            WordUtils.capitalizeFully(tf_person_name.getText()),
-            WordUtils.capitalizeFully(tf_person_gender.getText()),
-            Date.valueOf(dp_person_birth.getValue())
-        ));
-        updateTablePerson(null);
+        try {
+            Query.insertPessoa(new Pessoa(
+                WordUtils.capitalizeFully(tf_person_name.getText()),
+                WordUtils.capitalizeFully(tf_person_gender.getText()),
+                Date.valueOf(dp_person_birth.getValue())
+            ));
+            tf_person_name.clear();
+            tf_person_gender.clear();
+            dp_person_birth.setValue(null);
+            updateTablePerson(null);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
     
     @FXML
     void addPlace (ActionEvent e) {
-        Query.insertLugar(new Lugar(
+        try {
+            Query.insertLugar(new Lugar(
                 WordUtils.capitalizeFully(tf_place_country.getText()),
-            WordUtils.capitalizeFully(tf_place_state.getText()),
-            WordUtils.capitalizeFully(tf_place_city.getText())
-        ));
-        updateTablePlace(null);
+                WordUtils.capitalizeFully(tf_place_state.getText()),
+                WordUtils.capitalizeFully(tf_place_city.getText())
+            ));
+            tf_place_country.clear();
+            tf_place_state.clear();
+            tf_place_city.clear();
+            updateTablePlace(null);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
     
     @FXML
     void addVehicle (ActionEvent e) {
-        Query.insertVeiculo(new Veiculo(
-            WordUtils.capitalizeFully(tf_vehicle_model.getText()),
-            Integer.parseInt(tf_vehicle_year.getText())
-        ));
-        updateTableVehicle(null);
+        try {
+            Query.insertVeiculo(new Veiculo(
+                WordUtils.capitalizeFully(tf_vehicle_model.getText()),
+                Integer.parseInt(tf_vehicle_year.getText())
+            ));
+            tf_vehicle_model.clear();
+            tf_vehicle_year.clear();
+            updateTableVehicle(null);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
 
