@@ -61,9 +61,11 @@ public class Primary {
         col_person_name.setCellValueFactory(new PropertyValueFactory<>("nome"));
         col_person_gender.setCellValueFactory(new PropertyValueFactory<>("genero"));
         col_person_birth.setCellValueFactory(new PropertyValueFactory<>("nascimentoString"));
+
         col_place_country.setCellValueFactory(new PropertyValueFactory<>("pais"));
         col_place_state.setCellValueFactory(new PropertyValueFactory<>("estado"));
         col_place_city.setCellValueFactory(new PropertyValueFactory<>("cidade"));
+        
         col_vehicle_model.setCellValueFactory(new PropertyValueFactory<>("modelo"));
         col_vehicle_year.setCellValueFactory(new PropertyValueFactory<>("ano"));
     }
