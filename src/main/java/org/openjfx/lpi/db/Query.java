@@ -12,8 +12,8 @@ import org.openjfx.lpi.data.Veiculo;
 public class Query {
     public static void insertPessoa (Pessoa p) {
         try {
-            Connection conexao = new SQLConnection().connect();
-            PreparedStatement statement = conexao.prepareStatement("INSERT INTO pessoa (nome, genero, nascimento) values (?, ?, ?)");
+            Connection conexao = SQLConnection.connect();
+            PreparedStatement statement = conexao.prepareStatement("INSERT INTO person (prsn_name, prsn_gender, prsn_birth) values (?, ?, ?)");
             statement.setString(1, p.getNome());
             statement.setString(2, p.getGenero());
             statement.setDate(3, p.getNascimento());
@@ -27,8 +27,8 @@ public class Query {
 
     public static void insertLugar (Lugar p) {
         try {
-            Connection conexao = new SQLConnection().connect();
-            PreparedStatement statement = conexao.prepareStatement("INSERT INTO lugar (pais, estado, cidade) values (?, ?, ?)");
+            Connection conexao = SQLConnection.connect();
+            PreparedStatement statement = conexao.prepareStatement("INSERT INTO place (plce_country, plce_state, plce_city) values (?, ?, ?)");
             statement.setString(1, p.getPais());
             statement.setString(2, p.getEstado());
             statement.setString(3, p.getCidade());
@@ -42,8 +42,8 @@ public class Query {
 
     public static void insertVeiculo (Veiculo p) {
         try {
-            Connection conexao = new SQLConnection().connect();
-            PreparedStatement statement = conexao.prepareStatement("INSERT INTO veiculo (modelo, genero) values (?, ?)");
+            Connection conexao = SQLConnection.connect();
+            PreparedStatement statement = conexao.prepareStatement("INSERT INTO vehicle (vhcl_model, vhcl_year) values (?, ?)");
             statement.setString(1, p.getModelo());
             statement.setInt(2, p.getAno());
             statement.execute();
@@ -56,7 +56,7 @@ public class Query {
 
     public static void executeSqlFile (String file_path) {
         try {
-            Connection conexao = new SQLConnection().connect();
+            Connection conexao = SQLConnection.connect();
             BufferedReader br = new BufferedReader(new FileReader(file_path));
             StringBuilder sb = new StringBuilder();
             String linha;

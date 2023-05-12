@@ -10,9 +10,7 @@ import java.sql.SQLException;
 
 public class SQLConnection {
 
-    private Connection conexao;
-
-    public Connection connect() throws IOException {
+    public static Connection connect() throws IOException {
 
         String[] env = new String[] {
             "host",
@@ -44,12 +42,14 @@ public class SQLConnection {
 
         String driver = "jdbc:postgresql://" + host + ":" + port + "/" + database;
 
+        Connection connection = null;
+
         try {
 
             Class.forName("org.postgresql.Driver");
 
-            conexao = DriverManager.getConnection(driver, userName, password);
-            conexao.setAutoCommit(false);
+            connection = DriverManager.getConnection(driver, userName, password);
+            connection.setAutoCommit(false);
 
         } catch (ClassNotFoundException ex) {
             System.out.println("SQLConnector.connect() -- Erro: Driver do banco de dados não localizado!");
@@ -58,7 +58,7 @@ public class SQLConnection {
             System.out.println("SQLConnector.connect() -- Erro ao conectar com o banco de dados!");
             ex.printStackTrace();
         } 
-        return conexao;
+        return connection;
 
     }
 

@@ -14,37 +14,56 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<TabPane depthTest="DISABLE" focusTraversable="false" maxHeight="1.8" maxWidth="1.8" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="800.0" rotateGraphic="true" side="LEFT" stylesheets="@css/styles.css" tabClosingPolicy="UNAVAILABLE" tabMaxWidth="24.0" tabMinHeight="80.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.lpi.controller.Primary">
+<TabPane
+   depthTest="DISABLE" 
+   focusTraversable="false" 
+   maxHeight="1.8" 
+   maxWidth="1.8" 
+   minHeight="-Infinity" 
+   minWidth="-Infinity" 
+   nodeOrientation="LEFT_TO_RIGHT" 
+   prefHeight="400.0" 
+   prefWidth="800.0" 
+   rotateGraphic="true" 
+   side="LEFT" 
+   stylesheets="@css/styles.css" 
+   tabClosingPolicy="UNAVAILABLE" 
+   tabMaxWidth="24.0" 
+   tabMinHeight="80.0" 
+   xmlns="http://javafx.com/javafx/19" 
+   xmlns:fx="http://javafx.com/fxml/1" 
+   fx:controller="org.openjfx.lpi.controller.Primary"
+> 
   <tabs>
     <Tab closable="false">
          <content>
             <TitledPane alignment="CENTER" animated="false" collapsible="false" focusTraversable="false" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@css/styles.css" text="Pessoa">
                <content>
-                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="vbox">
+                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="vbox" stylesheets="@css/styles.css">
                      <children>
-                        <AnchorPane>
+                        <AnchorPane stylesheets="@css/styles.css">
                            <children>
-                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="8.0" AnchorPane.leftAnchor="0.0">
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="8.0" stylesheets="@css/styles.css" AnchorPane.leftAnchor="0.0">
                                  <children>
-                                    <Label text="Nome:" />
-                                    <TextField fx:id="tf_person_name" maxWidth="128.0" />
-                                    <Label text="Genero:" />
-                                    <TextField fx:id="tf_person_gender" maxWidth="128.0" />
-                                    <Label text="Nascimento:" />
-                                    <DatePicker fx:id="dp_person_birth" maxWidth="128.0" />
+                                    <Label stylesheets="@css/styles.css" text="Nome:" />
+                                    <TextField fx:id="tf_person_name" maxWidth="128.0" stylesheets="@css/styles.css" text="asfaf" />
+                                    <Label stylesheets="@css/styles.css" text="Genero:" />
+                                    <TextField fx:id="tf_person_gender" maxWidth="128.0" stylesheets="@css/styles.css" />
+                                    <Label stylesheets="@css/styles.css" text="Nascimento:" />
+                                    <DatePicker fx:id="dp_person_birth" maxWidth="128.0" stylesheets="@css/styles.css" />
                                  </children>
                               </HBox>
-                              <Button layoutX="540.0" mnemonicParsing="false" prefWidth="88.0" text="+" AnchorPane.rightAnchor="8.0" />
+                              <Button layoutX="540.0" mnemonicParsing="false" onAction="#addPerson" prefWidth="88.0" stylesheets="@css/styles.css" text="+" AnchorPane.rightAnchor="8.0" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" />
                            </VBox.margin>
                         </AnchorPane>
-                        <TableView focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                        <TableView fx:id="table_person" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@css/styles.css" VBox.vgrow="ALWAYS">
                           <columns>
-                            <TableColumn fx:id="col_person_name" minWidth="-1.0" prefWidth="-1.0" text="Nome" />
-                            <TableColumn fx:id="col_person_gender" minWidth="-1.0" prefWidth="-1.0" text="Gênero" />
-                              <TableColumn fx:id="col_person_birth" minWidth="-1.0" prefWidth="-1.0" text="Nascimento" />
+                            <TableColumn fx:id="col_person_name" text="Nome" />
+                            <TableColumn fx:id="col_person_gender" text="Gênero" />
+                              <TableColumn fx:id="col_person_birth" text="Nascimento" />
                           </columns>
                            <VBox.margin>
                               <Insets bottom="-8.0" left="-8.0" right="-8.0" />
@@ -65,7 +84,7 @@
             </TitledPane>
          </content>
          <graphic>
-            <AnchorPane maxWidth="1.8">
+            <AnchorPane maxWidth="1.8" stylesheets="@css/styles.css">
                <children>
                   <Label rotate="90.0" text="Pessoa" />
                </children>
@@ -76,31 +95,31 @@
          <content>
             <TitledPane alignment="CENTER" animated="false" collapsible="false" focusTraversable="false" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@css/styles.css" text="Lugar">
                <content>
-                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="vbox">
+                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="vbox" stylesheets="@css/styles.css">
                      <children>
-                        <AnchorPane>
+                        <AnchorPane stylesheets="@css/styles.css">
                            <children>
-                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="8.0" AnchorPane.leftAnchor="0.0">
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="8.0" stylesheets="@css/styles.css" AnchorPane.leftAnchor="0.0">
                                  <children>
-                                    <Label text="País:" />
-                                    <TextField fx:id="tf_place_country" maxWidth="128.0" />
-                                    <Label text="Estado:" />
-                                    <TextField fx:id="tf_place_state" maxWidth="128.0" />
-                                    <Label text="Cidade:" />
-                                    <TextField fx:id="tf_place_city" layoutX="225.0" layoutY="10.0" maxWidth="128.0" />
+                                    <Label stylesheets="@css/styles.css" text="País:" />
+                                    <TextField fx:id="tf_place_country" maxWidth="128.0" stylesheets="@css/styles.css" />
+                                    <Label stylesheets="@css/styles.css" text="Estado:" />
+                                    <TextField fx:id="tf_place_state" maxWidth="128.0" stylesheets="@css/styles.css" />
+                                    <Label stylesheets="@css/styles.css" text="Cidade:" />
+                                    <TextField fx:id="tf_place_city" layoutX="225.0" layoutY="10.0" maxWidth="128.0" stylesheets="@css/styles.css" />
                                  </children>
                               </HBox>
-                              <Button layoutX="540.0" mnemonicParsing="false" prefWidth="88.0" text="+" AnchorPane.rightAnchor="8.0" />
+                              <Button layoutX="540.0" mnemonicParsing="false" onAction="#addPlace" prefWidth="88.0" stylesheets="@css/styles.css" text="+" AnchorPane.rightAnchor="8.0" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" />
                            </VBox.margin>
                         </AnchorPane>
-                        <TableView focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                        <TableView fx:id="table_place" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@css/styles.css" VBox.vgrow="ALWAYS">
                            <columns>
-                              <TableColumn fx:id="col_place_country" minWidth="-1.0" prefWidth="-1.0" text="País" />
-                              <TableColumn fx:id="col_place_state" minWidth="-1.0" prefWidth="-1.0" text="Estado" />
-                              <TableColumn fx:id="col_place_city" minWidth="-1.0" prefWidth="-1.0" text="Cidade" />
+                              <TableColumn fx:id="col_place_country" text="País" />
+                              <TableColumn fx:id="col_place_state" text="Estado" />
+                              <TableColumn fx:id="col_place_city" text="Cidade" />
                            </columns>
                            <VBox.margin>
                               <Insets bottom="-8.0" left="-8.0" right="-8.0" />
@@ -121,9 +140,9 @@
             </TitledPane>
          </content>
          <graphic>
-            <AnchorPane maxWidth="1.8">
+            <AnchorPane maxWidth="1.8" stylesheets="@css/styles.css">
                <children>
-                  <Label rotate="90.0" text="Lugar" />
+                  <Label rotate="90.0" stylesheets="@css/styles.css" text="Lugar" />
                </children>
             </AnchorPane>
          </graphic>
@@ -132,28 +151,28 @@
          <content>
             <TitledPane alignment="CENTER" animated="false" collapsible="false" focusTraversable="false" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@css/styles.css" text="Veículo">
                <content>
-                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="vbox">
+                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="vbox" stylesheets="@css/styles.css">
                      <children>
-                        <AnchorPane>
+                        <AnchorPane stylesheets="@css/styles.css">
                            <children>
-                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="8.0" AnchorPane.leftAnchor="0.0">
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="8.0" stylesheets="@css/styles.css" AnchorPane.leftAnchor="0.0">
                                  <children>
-                                    <Label text="Modelo:" />
-                                    <TextField fx:id="tf_vehicle_model" maxWidth="128.0" />
-                                    <Label text="Ano:" />
-                                    <TextField fx:id="tf_vehicle_year" maxWidth="128.0" />
+                                    <Label stylesheets="@css/styles.css" text="Modelo:" />
+                                    <TextField fx:id="tf_vehicle_model" maxWidth="128.0" stylesheets="@css/styles.css" />
+                                    <Label stylesheets="@css/styles.css" text="Ano:" />
+                                    <TextField fx:id="tf_vehicle_year" maxWidth="128.0" stylesheets="@css/styles.css" />
                                  </children>
                               </HBox>
-                              <Button layoutX="540.0" mnemonicParsing="false" prefWidth="88.0" text="+" AnchorPane.rightAnchor="8.0" />
+                              <Button layoutX="540.0" mnemonicParsing="false" onAction="#addVehicle" prefWidth="88.0" stylesheets="@css/styles.css" text="+" AnchorPane.rightAnchor="8.0" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" />
                            </VBox.margin>
                         </AnchorPane>
-                        <TableView focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                        <TableView fx:id="table_vehicle" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@css/styles.css" VBox.vgrow="ALWAYS">
                            <columns>
-                              <TableColumn fx:id="col_vehicle_model" minWidth="-1.0" prefWidth="-1.0" text="Modelo" />
-                              <TableColumn fx:id="col_vehicle_year" minWidth="-1.0" prefWidth="-1.0" text="Ano" />
+                              <TableColumn fx:id="col_vehicle_model" text="Modelo" />
+                              <TableColumn fx:id="col_vehicle_year" text="Ano" />
                            </columns>
                            <VBox.margin>
                               <Insets bottom="-8.0" left="-8.0" right="-8.0" />
@@ -174,9 +193,9 @@
             </TitledPane>
          </content>
          <graphic>
-            <AnchorPane maxWidth="1.8">
+            <AnchorPane maxWidth="1.8" stylesheets="@css/styles.css">
                <children>
-                  <Label rotate="90.0" text="Veículo" />
+                  <Label rotate="90.0" stylesheets="@css/styles.css" text="Veículo" />
                </children>
             </AnchorPane>
          </graphic>

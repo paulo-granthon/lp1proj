@@ -23,7 +23,7 @@ public class Pessoa {
     public String getGenero() { return genero; }
     public Date getNascimento() { return nascimento; }
     public String getNascimentoString() {
-        return new SimpleDateFormat("yyyy-MM-dd").format(nascimento);
+        return new SimpleDateFormat("dd-MM-yyyy").format(nascimento);
     }
     
     public void setNome(String nome) { this.nome = nome; }

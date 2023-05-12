@@ -1,26 +1,26 @@
 
-CREATE TABLE IF NOT EXISTS pessoa (
+CREATE TABLE IF NOT EXISTS person (
     id serial NOT NULL,
-    nome INT NOT NULL,
-    genero VARCHAR NOT NULL,
-    nascimento DATE NOT NULL,
+    prsn_name VARCHAR NOT NULL,
+    prsn_gender VARCHAR NOT NULL,
+    prsn_birth DATE NOT NULL,
 
-    CONSTRAINT pessoa_pkey PRIMARY KEY (id)
+    CONSTRAINT person_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS lugar (
+CREATE TABLE IF NOT EXISTS place (
     id serial NOT NULL,
-    pais VARCHAR NOT NULL,
-    estado VARCHAR NOT NULL,
-    cidade VARCHAR NOT NULL,
+    plce_country VARCHAR NOT NULL,
+    plce_state VARCHAR NOT NULL,
+    plce_city VARCHAR NOT NULL,
 
-    CONSTRAINT lugar_pkey PRIMARY KEY (id)
+    CONSTRAINT place_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS veiculo (
+CREATE TABLE IF NOT EXISTS vehicle (
     id serial NOT NULL,
-    modelo VARCHAR NOT NULL,
-    ano INT NULL,
+    vhcl_model VARCHAR NOT NULL,
+    vhcl_year INT NULL,
 
-    CONSTRAINT veiculo_pkey PRIMARY KEY (id)
+    CONSTRAINT vehicle_pkey PRIMARY KEY (id)
 );

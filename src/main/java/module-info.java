@@ -1,7 +1,7 @@
 module org.openjfx.lpi {
     requires transitive javafx.controls;
     requires transitive javafx.fxml;
-    requires transitive org.controlsfx.controls;
+    requires transitive org.apache.commons.text;
     requires transitive java.sql;
 
     opens org.openjfx.lpi.controller to javafx.fxml;

@@ -1,13 +1,14 @@
 package org.openjfx.lpi.controller;
 
-import java.io.IOException;
+// import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+// import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.text.WordUtils;
 import org.openjfx.lpi.data.Lugar;
 import org.openjfx.lpi.data.Pessoa;
 import org.openjfx.lpi.data.Veiculo;
@@ -29,7 +30,7 @@ public class Primary {
     @FXML private TextField tf_person_gender;
     @FXML private DatePicker dp_person_birth;
 
-    @FXML private TableView<Pessoa> table_people;
+    @FXML private TableView<Pessoa> table_person;
     @FXML private TableColumn<Pessoa, String> col_person_name;
     @FXML private TableColumn<Pessoa, String> col_person_gender;
     @FXML private TableColumn<Pessoa, Date> col_person_birth;
@@ -50,7 +51,7 @@ public class Primary {
     @FXML private TextField tf_vehicle_model;
     @FXML private TextField tf_vehicle_year;
 
-    void initialize () {
+    public void initialize () {
 
         buildTable();
 
@@ -58,109 +59,123 @@ public class Primary {
     }
 
     void buildTable () {
-        col_person_name.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        col_person_gender.setCellValueFactory(new PropertyValueFactory<>("genero"));
-        col_person_birth.setCellValueFactory(new PropertyValueFactory<>("nascimentoString"));
+        col_person_name.setCellValueFactory(new PropertyValueFactory<Pessoa, String>("nome"));
+        col_person_gender.setCellValueFactory(new PropertyValueFactory<Pessoa, String>("genero"));
+        col_person_birth.setCellValueFactory(new PropertyValueFactory<Pessoa, Date>("nascimentoString"));
 
-        col_place_country.setCellValueFactory(new PropertyValueFactory<>("pais"));
-        col_place_state.setCellValueFactory(new PropertyValueFactory<>("estado"));
-        col_place_city.setCellValueFactory(new PropertyValueFactory<>("cidade"));
+        col_place_country.setCellValueFactory(new PropertyValueFactory<Lugar, String>("pais"));
+        col_place_state.setCellValueFactory(new PropertyValueFactory<Lugar, String>("estado"));
+        col_place_city.setCellValueFactory(new PropertyValueFactory<Lugar, String>("cidade"));
         
-        col_vehicle_model.setCellValueFactory(new PropertyValueFactory<>("modelo"));
-        col_vehicle_year.setCellValueFactory(new PropertyValueFactory<>("ano"));
+        col_vehicle_model.setCellValueFactory(new PropertyValueFactory<Veiculo, String>("modelo"));
+        col_vehicle_year.setCellValueFactory(new PropertyValueFactory<Veiculo, Integer>("ano"));
     }
 
     private void updateTable () {
-        try (Connection conexao = new SQLConnection().connect()) {
+        // try {
+            // Connection connection = SQLConnection.connect();
+            // System.out.println(connection == null ? "Sem conexão" : "Conectado");
 
-            updateTablePeople(conexao);
-            updateTablePlace(conexao);
-            updateTableVehicle(conexao);
+            updateTablePerson(null);
+            updateTablePlace(null);
+            updateTableVehicle(null);
 
-        } catch (IOException | SQLException e) {
-            e.printStackTrace();
-        }
+            // connection.commit();
+            // connection.close();
+
+        // } catch (IOException | SQLException e) {
+        //     e.printStackTrace();
+        // }
     }
 
-    private void updateTablePeople (Connection conexao) {
-        boolean closeConnection = false;
+    private void updateTablePerson (Connection connection) {
+        boolean commitAndClose = false;
         try {
-            if (conexao == null) conexao = new SQLConnection().connect();
-            else closeConnection = true;
+            if (connection == null) connection = SQLConnection.connect();
+            else commitAndClose = true;
             List<Pessoa> pessoas = new ArrayList<>();
-            ResultSet queryPessoa = conexao.prepareStatement("SELECT * FROM pessoa").executeQuery();
+            ResultSet queryPessoa = connection.prepareStatement("SELECT * FROM person").executeQuery();
             while (queryPessoa.next()) {
                 pessoas.add(new Pessoa(
-                    queryPessoa.getString("nome"),
-                    queryPessoa.getString("genero"),
-                    queryPessoa.getDate("nascimento")
+                    queryPessoa.getString("prsn_name"),
+                    queryPessoa.getString("prsn_gender"),
+                    queryPessoa.getDate("prsn_birth")
                 ));
             }
-            table_people.setItems(FXCollections.observableArrayList((pessoas)));
-            table_people.refresh();
-            if (closeConnection && conexao != null) conexao.close();
+            table_person.setItems(FXCollections.observableArrayList((pessoas)));
+            table_person.refresh();
+            if (commitAndClose && connection != null) {
+                connection.commit();
+                connection.close();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    private void updateTablePlace (Connection conexao) {
-        boolean closeConnection = false;
+    private void updateTablePlace (Connection connection) {
+        boolean commitAndClose = false;
         try {
-            if (conexao == null) conexao = new SQLConnection().connect();
-            else closeConnection = true;
+            if (connection == null) connection = SQLConnection.connect();
+            else commitAndClose = true;
             List<Lugar> lugares = new ArrayList<>();
-            ResultSet queryLugar = conexao.prepareStatement("SELECT * FROM lugar").executeQuery();
+            ResultSet queryLugar = connection.prepareStatement("SELECT * FROM place").executeQuery();
             while (queryLugar.next()) {
                 lugares.add(new Lugar(
-                    queryLugar.getString("pais"),
-                    queryLugar.getString("estado"),
-                    queryLugar.getString("cidade")
+                    queryLugar.getString("plce_country"),
+                    queryLugar.getString("plce_state"),
+                    queryLugar.getString("plce_city")
                 ));
             }
             table_place.setItems(FXCollections.observableArrayList((lugares)));
             table_place.refresh();
-            if (closeConnection && conexao != null) conexao.close();
+            if (commitAndClose && connection != null) {
+                connection.commit();
+                connection.close();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    private void updateTableVehicle (Connection conexao) {
-        boolean closeConnection = false;
+    private void updateTableVehicle (Connection connection) {
+        boolean commitAndClose = false;
         try {
-            if (conexao == null) conexao = new SQLConnection().connect();
-            else closeConnection = true;
+            if (connection == null) connection = SQLConnection.connect();
+            else commitAndClose = true;
             List<Veiculo> veiculos = new ArrayList<>();
-            ResultSet queryVeiculo = conexao.prepareStatement("SELECT * FROM veiculo").executeQuery();
+            ResultSet queryVeiculo = connection.prepareStatement("SELECT * FROM vehicle").executeQuery();
             while (queryVeiculo.next()) {
                 veiculos.add(new Veiculo(
-                    queryVeiculo.getString("modelo"),
-                    queryVeiculo.getInt("ano")
+                    queryVeiculo.getString("vhcl_model"),
+                    queryVeiculo.getInt("vhcl_year")
                 ));
             }
             table_vehicle.setItems(FXCollections.observableArrayList((veiculos)));
             table_vehicle.refresh();
-            if (closeConnection && conexao != null) conexao.close();
+            if (commitAndClose && connection != null) {
+                connection.commit();
+                connection.close();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    void addPeople (ActionEvent e) {
+    void addPerson (ActionEvent e) {
         Query.insertPessoa(new Pessoa(
-            tf_person_name.getText(),
-            tf_person_gender.getText(),
+            WordUtils.capitalizeFully(tf_person_name.getText()),
+            WordUtils.capitalizeFully(tf_person_gender.getText()),
             Date.valueOf(dp_person_birth.getValue())
         ));
-        updateTablePeople(null);
+        updateTablePerson(null);
     }
     
     @FXML
     void addPlace (ActionEvent e) {
         Query.insertLugar(new Lugar(
-            tf_place_country.getText(),
-            tf_place_state.getText(),
-            tf_place_city.getText()
+                WordUtils.capitalizeFully(tf_place_country.getText()),
+            WordUtils.capitalizeFully(tf_place_state.getText()),
+            WordUtils.capitalizeFully(tf_place_city.getText())
         ));
         updateTablePlace(null);
     }
@@ -168,7 +183,7 @@ public class Primary {
     @FXML
     void addVehicle (ActionEvent e) {
         Query.insertVeiculo(new Veiculo(
-            tf_vehicle_model.getText(),
+            WordUtils.capitalizeFully(tf_vehicle_model.getText()),
             Integer.parseInt(tf_vehicle_year.getText())
         ));
         updateTableVehicle(null);
