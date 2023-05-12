@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS lugar (
 
 CREATE TABLE IF NOT EXISTS veiculo (
     id serial NOT NULL,
-    modelo VARCHAR NOT NULL
+    modelo VARCHAR NOT NULL,
     ano INT NULL,
 
     CONSTRAINT veiculo_pkey PRIMARY KEY (id)
