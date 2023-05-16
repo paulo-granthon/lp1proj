@@ -1,17 +1,16 @@
 package org.openjfx.lpi.controller;
 
-// import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
-// import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.text.WordUtils;
-import org.openjfx.lpi.data.Lugar;
-import org.openjfx.lpi.data.Pessoa;
-import org.openjfx.lpi.data.Veiculo;
+import org.openjfx.lpi.data.Place;
+import org.openjfx.lpi.data.Person;
+import org.openjfx.lpi.data.Vehicle;
+import org.openjfx.lpi.data.Trip;
 import org.openjfx.lpi.db.Query;
 import org.openjfx.lpi.db.SQLConnection;
 
@@ -25,31 +24,40 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Primary {
-    
+
+    // Tab Pessoa
     @FXML private TextField tf_person_name;
     @FXML private TextField tf_person_gender;
     @FXML private DatePicker dp_person_birth;
+    @FXML private TableView<Person> table_person;
+    @FXML private TableColumn<Person, String> col_person_name;
+    @FXML private TableColumn<Person, String> col_person_gender;
+    @FXML private TableColumn<Person, Date> col_person_birth;
 
-    @FXML private TableView<Pessoa> table_person;
-    @FXML private TableColumn<Pessoa, String> col_person_name;
-    @FXML private TableColumn<Pessoa, String> col_person_gender;
-    @FXML private TableColumn<Pessoa, Date> col_person_birth;
-
+    // Tab place
     @FXML private TextField tf_place_country;
     @FXML private TextField tf_place_state;
     @FXML private TextField tf_place_city;
-
-    @FXML private TableView<Lugar> table_place;
-    @FXML private TableColumn<Lugar, String> col_place_country;
-    @FXML private TableColumn<Lugar, String> col_place_state;
-    @FXML private TableColumn<Lugar, String> col_place_city;
-
-    @FXML private TableView<Veiculo> table_vehicle;
-    @FXML private TableColumn<Veiculo, String> col_vehicle_model;
-    @FXML private TableColumn<Veiculo, Integer> col_vehicle_year;
-
+    @FXML private TableView<Place> table_place;
+    @FXML private TableColumn<Place, String> col_place_country;
+    @FXML private TableColumn<Place, String> col_place_state;
+    @FXML private TableColumn<Place, String> col_place_city;
+    
+    // Tab vehicle
     @FXML private TextField tf_vehicle_model;
     @FXML private TextField tf_vehicle_year;
+    @FXML private TableView<Vehicle> table_vehicle;
+    @FXML private TableColumn<Vehicle, String> col_vehicle_model;
+    @FXML private TableColumn<Vehicle, Integer> col_vehicle_year;
+    
+    // Tab trip
+    @FXML private TextField tf_trip_person;
+    @FXML private TextField tf_trip_vehicle;
+    @FXML private TextField tf_trip_place;
+    @FXML private TableView<Trip> table_trip;
+    @FXML private TableColumn<Trip, String> col_trip_person;
+    @FXML private TableColumn<Trip, String> col_trip_vehicle;
+    @FXML private TableColumn<Trip, String> col_trip_place;
 
     public void initialize () {
 
@@ -59,16 +67,20 @@ public class Primary {
     }
 
     void buildTable () {
-        col_person_name.setCellValueFactory(new PropertyValueFactory<Pessoa, String>("nome"));
-        col_person_gender.setCellValueFactory(new PropertyValueFactory<Pessoa, String>("genero"));
-        col_person_birth.setCellValueFactory(new PropertyValueFactory<Pessoa, Date>("nascimentoString"));
+        col_person_name.setCellValueFactory(new PropertyValueFactory<Person, String>("nome"));
+        col_person_gender.setCellValueFactory(new PropertyValueFactory<Person, String>("genero"));
+        col_person_birth.setCellValueFactory(new PropertyValueFactory<Person, Date>("nascimentoString"));
 
-        col_place_country.setCellValueFactory(new PropertyValueFactory<Lugar, String>("pais"));
-        col_place_state.setCellValueFactory(new PropertyValueFactory<Lugar, String>("estado"));
-        col_place_city.setCellValueFactory(new PropertyValueFactory<Lugar, String>("cidade"));
+        col_place_country.setCellValueFactory(new PropertyValueFactory<Place, String>("pais"));
+        col_place_state.setCellValueFactory(new PropertyValueFactory<Place, String>("estado"));
+        col_place_city.setCellValueFactory(new PropertyValueFactory<Place, String>("cidade"));
         
-        col_vehicle_model.setCellValueFactory(new PropertyValueFactory<Veiculo, String>("modelo"));
-        col_vehicle_year.setCellValueFactory(new PropertyValueFactory<Veiculo, Integer>("ano"));
+        col_vehicle_model.setCellValueFactory(new PropertyValueFactory<Vehicle, String>("modelo"));
+        col_vehicle_year.setCellValueFactory(new PropertyValueFactory<Vehicle, Integer>("ano"));
+
+        col_trip_person.setCellValueFactory(new PropertyValueFactory<Trip, String>("modelo"));
+        col_trip_vehicle.setCellValueFactory(new PropertyValueFactory<Trip, String>("modelo"));
+        col_trip_place.setCellValueFactory(new PropertyValueFactory<Trip, String>("modelo"));
     }
 
     private void updateTable () {
@@ -79,6 +91,8 @@ public class Primary {
             updateTablePerson(null);
             updateTablePlace(null);
             updateTableVehicle(null);
+
+            
 
             // connection.commit();
             // connection.close();
@@ -93,10 +107,10 @@ public class Primary {
         try {
             if (connection == null) connection = SQLConnection.connect();
             else commitAndClose = true;
-            List<Pessoa> pessoas = new ArrayList<>();
+            List<Person> pessoas = new ArrayList<>();
             ResultSet queryPessoa = connection.prepareStatement("SELECT * FROM person").executeQuery();
             while (queryPessoa.next()) {
-                pessoas.add(new Pessoa(
+                pessoas.add(new Person(
                     queryPessoa.getString("prsn_name"),
                     queryPessoa.getString("prsn_gender"),
                     queryPessoa.getDate("prsn_birth")
@@ -117,10 +131,10 @@ public class Primary {
         try {
             if (connection == null) connection = SQLConnection.connect();
             else commitAndClose = true;
-            List<Lugar> lugares = new ArrayList<>();
+            List<Place> lugares = new ArrayList<>();
             ResultSet queryLugar = connection.prepareStatement("SELECT * FROM place").executeQuery();
             while (queryLugar.next()) {
-                lugares.add(new Lugar(
+                lugares.add(new Place(
                     queryLugar.getString("plce_country"),
                     queryLugar.getString("plce_state"),
                     queryLugar.getString("plce_city")
@@ -141,10 +155,10 @@ public class Primary {
         try {
             if (connection == null) connection = SQLConnection.connect();
             else commitAndClose = true;
-            List<Veiculo> veiculos = new ArrayList<>();
+            List<Vehicle> veiculos = new ArrayList<>();
             ResultSet queryVeiculo = connection.prepareStatement("SELECT * FROM vehicle").executeQuery();
             while (queryVeiculo.next()) {
-                veiculos.add(new Veiculo(
+                veiculos.add(new Vehicle(
                     queryVeiculo.getString("vhcl_model"),
                     queryVeiculo.getInt("vhcl_year")
                 ));
@@ -163,7 +177,7 @@ public class Primary {
     @FXML
     void addPerson (ActionEvent e) {
         try {
-            Query.insertPessoa(new Pessoa(
+            Query.insertPessoa(new Person(
                 WordUtils.capitalizeFully(tf_person_name.getText()),
                 WordUtils.capitalizeFully(tf_person_gender.getText()),
                 Date.valueOf(dp_person_birth.getValue())
@@ -180,7 +194,7 @@ public class Primary {
     @FXML
     void addPlace (ActionEvent e) {
         try {
-            Query.insertLugar(new Lugar(
+            Query.insertLugar(new Place(
                 WordUtils.capitalizeFully(tf_place_country.getText()),
                 WordUtils.capitalizeFully(tf_place_state.getText()),
                 WordUtils.capitalizeFully(tf_place_city.getText())
@@ -197,7 +211,7 @@ public class Primary {
     @FXML
     void addVehicle (ActionEvent e) {
         try {
-            Query.insertVeiculo(new Veiculo(
+            Query.insertVeiculo(new Vehicle(
                 WordUtils.capitalizeFully(tf_vehicle_model.getText()),
                 Integer.parseInt(tf_vehicle_year.getText())
             ));

@@ -200,5 +200,61 @@
             </AnchorPane>
          </graphic>
       </Tab>
+      <Tab closable="false">
+         <content>
+            <TitledPane alignment="CENTER" animated="false" collapsible="false" focusTraversable="false" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@css/styles.css" text="Viagem">
+               <content>
+                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="vbox" stylesheets="@css/styles.css">
+                     <children>
+                        <AnchorPane stylesheets="@css/styles.css">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="8.0" stylesheets="@css/styles.css" AnchorPane.leftAnchor="0.0">
+                                 <children>
+                                    <Label stylesheets="@css/styles.css" text="Pessoa:" />
+                                    <TextField fx:id="tf_trip_person" maxWidth="128.0" stylesheets="@css/styles.css" />
+                                    <Label stylesheets="@css/styles.css" text="Veículo:" />
+                                    <TextField fx:id="tf_trip_vehicle" maxWidth="128.0" stylesheets="@css/styles.css" />
+                                    <Label layoutX="197.0" layoutY="11.0" stylesheets="@css/styles.css" text="Lugar:" />
+                                    <TextField fx:id="tf_trip_place" layoutX="235.0" layoutY="10.0" maxWidth="128.0" stylesheets="@css/styles.css" />
+                                 </children>
+                              </HBox>
+                              <Button layoutX="540.0" mnemonicParsing="false" onAction="#addVehicle" prefWidth="88.0" stylesheets="@css/styles.css" text="+" AnchorPane.rightAnchor="8.0" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                        <TableView fx:id="table_trip" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@css/styles.css" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="col_trip_person" text="Pessoa" />
+                              <TableColumn fx:id="col_trip_vehicle" text="Veículo" />
+                              <TableColumn fx:id="col_trip_place" text="Lugar" />
+                           </columns>
+                           <VBox.margin>
+                              <Insets bottom="-8.0" left="-8.0" right="-8.0" />
+                           </VBox.margin>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                           <padding>
+                              <Insets top="4.0" />
+                           </padding>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </content>
+            </TitledPane>
+         </content>
+         <graphic>
+            <AnchorPane maxWidth="1.8" stylesheets="@css/styles.css">
+               <children>
+                  <Label rotate="90.0" stylesheets="@css/styles.css" text="Viagem" />
+               </children>
+            </AnchorPane>
+         </graphic>
+      </Tab>
   </tabs>
 </TabPane>
