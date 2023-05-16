@@ -226,7 +226,7 @@
                         </AnchorPane>
                         <TableView fx:id="table_trip" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@css/styles.css" VBox.vgrow="ALWAYS">
                            <columns>
-                              <TableColumn fx:id="col_trip_person" text="Pessoa" />
+                              <TableColumn fx:id="col_trip_people" text="Pessoa" />
                               <TableColumn fx:id="col_trip_vehicle" text="Veículo" />
                               <TableColumn fx:id="col_trip_place" text="Lugar" />
                            </columns>

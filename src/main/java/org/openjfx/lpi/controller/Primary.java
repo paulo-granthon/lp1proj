@@ -8,9 +8,9 @@ import java.util.List;
 
 import org.apache.commons.text.WordUtils;
 import org.openjfx.lpi.data.Place;
+import org.openjfx.lpi.controller.utils.TripWrapper;
 import org.openjfx.lpi.data.Person;
 import org.openjfx.lpi.data.Vehicle;
-import org.openjfx.lpi.data.Trip;
 import org.openjfx.lpi.db.Query;
 import org.openjfx.lpi.db.SQLConnection;
 
@@ -54,10 +54,10 @@ public class Primary {
     @FXML private TextField tf_trip_person;
     @FXML private TextField tf_trip_vehicle;
     @FXML private TextField tf_trip_place;
-    @FXML private TableView<Trip> table_trip;
-    @FXML private TableColumn<Trip, String> col_trip_person;
-    @FXML private TableColumn<Trip, String> col_trip_vehicle;
-    @FXML private TableColumn<Trip, String> col_trip_place;
+    @FXML private TableView<TripWrapper> table_trip;
+    @FXML private TableColumn<TripWrapper, String> col_trip_people;
+    @FXML private TableColumn<TripWrapper, String> col_trip_vehicle;
+    @FXML private TableColumn<TripWrapper, String> col_trip_place;
 
     public void initialize () {
 
@@ -67,48 +67,58 @@ public class Primary {
     }
 
     void buildTable () {
-        col_person_name.setCellValueFactory(new PropertyValueFactory<Person, String>("nome"));
-        col_person_gender.setCellValueFactory(new PropertyValueFactory<Person, String>("genero"));
-        col_person_birth.setCellValueFactory(new PropertyValueFactory<Person, Date>("nascimentoString"));
+        col_person_name.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
+        col_person_gender.setCellValueFactory(new PropertyValueFactory<Person, String>("gender"));
+        col_person_birth.setCellValueFactory(new PropertyValueFactory<Person, Date>("birthString"));
+        col_person_name.setReorderable(false);
+        col_person_gender.setReorderable(false);
+        col_person_birth.setReorderable(false);
 
-        col_place_country.setCellValueFactory(new PropertyValueFactory<Place, String>("pais"));
-        col_place_state.setCellValueFactory(new PropertyValueFactory<Place, String>("estado"));
-        col_place_city.setCellValueFactory(new PropertyValueFactory<Place, String>("cidade"));
-        
-        col_vehicle_model.setCellValueFactory(new PropertyValueFactory<Vehicle, String>("modelo"));
-        col_vehicle_year.setCellValueFactory(new PropertyValueFactory<Vehicle, Integer>("ano"));
+        col_place_country.setCellValueFactory(new PropertyValueFactory<Place, String>("country"));
+        col_place_state.setCellValueFactory(new PropertyValueFactory<Place, String>("state"));
+        col_place_city.setCellValueFactory(new PropertyValueFactory<Place, String>("city"));
+        col_place_country.setReorderable(false);
+        col_place_state.setReorderable(false);
+        col_place_city.setReorderable(false);
 
-        col_trip_person.setCellValueFactory(new PropertyValueFactory<Trip, String>("modelo"));
-        col_trip_vehicle.setCellValueFactory(new PropertyValueFactory<Trip, String>("modelo"));
-        col_trip_place.setCellValueFactory(new PropertyValueFactory<Trip, String>("modelo"));
+        col_vehicle_model.setCellValueFactory(new PropertyValueFactory<Vehicle, String>("model"));
+        col_vehicle_year.setCellValueFactory(new PropertyValueFactory<Vehicle, Integer>("year"));
+        col_vehicle_model.setReorderable(false);
+        col_vehicle_year.setReorderable(false);
+
+        col_trip_people.setCellValueFactory(new PropertyValueFactory<TripWrapper, String>("people"));
+        col_trip_vehicle.setCellValueFactory(new PropertyValueFactory<TripWrapper, String>("vehicle"));
+        col_trip_place.setCellValueFactory(new PropertyValueFactory<TripWrapper, String>("place"));
+        col_trip_people.setReorderable(false);
+        col_trip_vehicle.setReorderable(false);
+        col_trip_place.setReorderable(false);
+
     }
 
     private void updateTable () {
-        // try {
-            // Connection connection = SQLConnection.connect();
-            // System.out.println(connection == null ? "Sem conexão" : "Conectado");
+        try {
+            Connection connection = SQLConnection.connect();
+            System.out.println(connection == null ? "Sem conexão" : "Conectado");
 
-            updateTablePerson(null);
-            updateTablePlace(null);
-            updateTableVehicle(null);
+            updateTablePerson(connection);
+            updateTablePlace(connection);
+            updateTableVehicle(connection);
 
             
 
-            // connection.commit();
-            // connection.close();
+            connection.commit();
+            connection.close();
 
-        // } catch (IOException | SQLException e) {
-        //     e.printStackTrace();
-        // }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void updateTablePerson (Connection connection) {
-        boolean commitAndClose = false;
         try {
-            if (connection == null) connection = SQLConnection.connect();
-            else commitAndClose = true;
-            List<Person> pessoas = new ArrayList<>();
+            boolean commitAndClose = connection == null ? (connection = SQLConnection.connect()) != null : false;
             ResultSet queryPessoa = connection.prepareStatement("SELECT * FROM person").executeQuery();
+            List<Person> pessoas = new ArrayList<>();
             while (queryPessoa.next()) {
                 pessoas.add(new Person(
                     queryPessoa.getString("prsn_name"),
@@ -121,18 +131,17 @@ public class Primary {
             if (commitAndClose && connection != null) {
                 connection.commit();
                 connection.close();
+                System.out.println("oi close pessoa");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     private void updateTablePlace (Connection connection) {
-        boolean commitAndClose = false;
         try {
-            if (connection == null) connection = SQLConnection.connect();
-            else commitAndClose = true;
-            List<Place> lugares = new ArrayList<>();
+            boolean commitAndClose = connection == null ? (connection = SQLConnection.connect()) != null : false;
             ResultSet queryLugar = connection.prepareStatement("SELECT * FROM place").executeQuery();
+            List<Place> lugares = new ArrayList<>();
             while (queryLugar.next()) {
                 lugares.add(new Place(
                     queryLugar.getString("plce_country"),
@@ -145,18 +154,17 @@ public class Primary {
             if (commitAndClose && connection != null) {
                 connection.commit();
                 connection.close();
+                System.out.println("oi close place");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     private void updateTableVehicle (Connection connection) {
-        boolean commitAndClose = false;
         try {
-            if (connection == null) connection = SQLConnection.connect();
-            else commitAndClose = true;
-            List<Vehicle> veiculos = new ArrayList<>();
+            boolean commitAndClose = connection == null ? (connection = SQLConnection.connect()) != null : false;
             ResultSet queryVeiculo = connection.prepareStatement("SELECT * FROM vehicle").executeQuery();
+            List<Vehicle> veiculos = new ArrayList<>();
             while (queryVeiculo.next()) {
                 veiculos.add(new Vehicle(
                     queryVeiculo.getString("vhcl_model"),
@@ -168,6 +176,7 @@ public class Primary {
             if (commitAndClose && connection != null) {
                 connection.commit();
                 connection.close();
+                System.out.println("oi close veiculo");
             }
         } catch (Exception e) {
             e.printStackTrace();

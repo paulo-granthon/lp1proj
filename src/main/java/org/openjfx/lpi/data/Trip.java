@@ -18,5 +18,8 @@ public class Trip {
         this.vehicle = veiculo;
     }
 
+    public List<Person> getPeople() { return people; }
+    public Place getPlace() { return place; }
+    public Vehicle getVehicle() { return vehicle; }
     
 }
