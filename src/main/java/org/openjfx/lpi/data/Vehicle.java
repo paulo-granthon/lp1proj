@@ -1,6 +1,6 @@
 package org.openjfx.lpi.data;
 
-public class Vehicle {
+public class Vehicle extends Record {
     String model;
     int year;
     

@@ -2,7 +2,7 @@ package org.openjfx.lpi.data;
 
 import java.util.List;
 
-public class Trip {
+public class Trip extends Record {
 
     List<Person> people;
     Place place;

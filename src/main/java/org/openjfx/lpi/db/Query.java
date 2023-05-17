@@ -10,6 +10,20 @@ import org.openjfx.lpi.data.Person;
 import org.openjfx.lpi.data.Vehicle;
 
 public class Query {
+
+    public static <T extends Record> void insert (Table table, Class<T> type, T record) {
+        try {
+            Connection conexao = SQLConnection.connect();
+            PreparedStatement statement = conexao.prepareStatement(table.getInsertQuery());
+            T.apply(statement, record);
+            statement.execute();
+            conexao.commit();
+            conexao.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void insertPessoa (Person p) {
         try {
             Connection conexao = SQLConnection.connect();

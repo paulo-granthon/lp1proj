@@ -1,6 +1,6 @@
 package org.openjfx.lpi.data;
 
-public class Place {
+public class Place extends Record {
     String country;
     String state;
     String city;

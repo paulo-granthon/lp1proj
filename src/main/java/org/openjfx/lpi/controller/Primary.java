@@ -126,13 +126,13 @@ public class Primary {
                     queryPessoa.getDate("prsn_birth")
                 ));
             }
-            table_person.setItems(FXCollections.observableArrayList((pessoas)));
-            table_person.refresh();
             if (commitAndClose && connection != null) {
                 connection.commit();
                 connection.close();
                 System.out.println("oi close pessoa");
             }
+            table_person.setItems(FXCollections.observableArrayList((pessoas)));
+            table_person.refresh();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -149,13 +149,13 @@ public class Primary {
                     queryLugar.getString("plce_city")
                 ));
             }
-            table_place.setItems(FXCollections.observableArrayList((lugares)));
-            table_place.refresh();
             if (commitAndClose && connection != null) {
                 connection.commit();
                 connection.close();
                 System.out.println("oi close place");
             }
+            table_place.setItems(FXCollections.observableArrayList((lugares)));
+            table_place.refresh();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -171,13 +171,13 @@ public class Primary {
                     queryVeiculo.getInt("vhcl_year")
                 ));
             }
-            table_vehicle.setItems(FXCollections.observableArrayList((veiculos)));
-            table_vehicle.refresh();
             if (commitAndClose && connection != null) {
                 connection.commit();
                 connection.close();
                 System.out.println("oi close veiculo");
             }
+            table_vehicle.setItems(FXCollections.observableArrayList((veiculos)));
+            table_vehicle.refresh();
         } catch (Exception e) {
             e.printStackTrace();
         }

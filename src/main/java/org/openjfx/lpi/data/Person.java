@@ -3,7 +3,7 @@ package org.openjfx.lpi.data;
 import java.text.SimpleDateFormat;
 import java.sql.Date;
 
-public class Person {
+public class Person extends Record {
 
     String name;
     String gender;
