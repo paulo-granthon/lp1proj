@@ -5,21 +5,21 @@ import java.util.List;
 public class Trip extends Record {
 
     List<Person> people;
-    Place place;
+    Place route;
     Vehicle vehicle;
     
     public Trip (
-        List<Person> pessoas,
+        List<Person> people,
         Place lugar,
         Vehicle veiculo
     ) {
-        this.people = pessoas;
-        this.place = lugar;
+        this.people = people;
+        this.route = lugar;
         this.vehicle = veiculo;
     }
 
     public List<Person> getPeople() { return people; }
-    public Place getPlace() { return place; }
+    public Place getPlace() { return route; }
     public Vehicle getVehicle() { return vehicle; }
-    
+
 }

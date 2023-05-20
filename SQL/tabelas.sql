@@ -22,9 +22,11 @@ CREATE TABLE IF NOT EXISTS vehicle (
     CONSTRAINT vehicle_pkey PRIMARY KEY (id)
 );
 
-
 CREATE TABLE IF NOT EXISTS trip (
     id SERIAL NOT NULL,
+    grp_id INT NOT NULL,
+    vhcl_id INT NOT NULL,
+    group_id INT NOT NULL,
     CONSTRAINT trip_pkey PRIMARY KEY (id)
 );
 
