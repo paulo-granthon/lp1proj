@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import org.openjfx.lpi.data.Place;
 import org.openjfx.lpi.data.Person;
 import org.openjfx.lpi.data.Vehicle;
+import org.openjfx.lpi.data.Record;
 
 public class Query {
 
@@ -15,7 +16,7 @@ public class Query {
         try {
             Connection conexao = SQLConnection.connect();
             PreparedStatement statement = conexao.prepareStatement(table.getInsertQuery());
-            T.apply(statement, record);
+            Record.apply(statement, record);
             statement.execute();
             conexao.commit();
             conexao.close();

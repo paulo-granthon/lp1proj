@@ -23,28 +23,28 @@ public class Record {
         throw new Exception("Record.create() -- Error: Unhandled type '" + type + "'");
     }
 
-    public static final <T extends Record> void apply (Class<T> type, PreparedStatement statement, T record) throws Exception {
-        if (type == Person.class) {
+    public static final <T extends Record> void apply (PreparedStatement statement, T record) throws Exception {
+        if (record instanceof Person) {
             Person person = (Person)record;
             statement.setString(1, person.getName());
             statement.setString(2, person.getGender());
             statement.setDate(3, person.getBirth());
             return;
         }
-        if (type == Place.class) {
+        if (record instanceof Place) {
             Place place = (Place)record;
             statement.setString(1, place.getCountry());
             statement.setString(2, place.getState());
             statement.setString(3, place.getCity());
             return;
         }
-        if (type == Vehicle.class) {
+        if (record instanceof Vehicle) {
             Vehicle vehicle = (Vehicle)record;
             statement.setString(1, vehicle.getModel());
             statement.setInt(2, vehicle.getYear());
             return;
         }
-        throw new Exception("Record.apply() -- Error: Unhandled type '" + type + "'");
+        // throw new Exception("Record.apply() -- Error: Unhandled type '" + type + "'");
     }
 
 }
