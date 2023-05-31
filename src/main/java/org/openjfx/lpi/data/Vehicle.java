@@ -1,6 +1,8 @@
 package org.openjfx.lpi.data;
 
-public class Vehicle extends Record {
+import org.openjfx.lpi.controller.utils.HasDisplayName;
+
+public class Vehicle extends Record implements HasDisplayName {
     String model;
     int year;
     
@@ -10,6 +12,10 @@ public class Vehicle extends Record {
     ) {
         this.model = model;
         this.year = year;
+    }
+
+    public String getDisplayName() {
+        return new StringBuilder(getModel()).append(" ").append(getYear()).toString();
     }
 
     public String getModel() { return model; }

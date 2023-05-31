@@ -260,3 +260,9 @@
     -fx-border-color: -fx-col-btn;
 }
 
+.add-btn {
+    -fx-padding: -2 6 -2 6;
+    -fx-background-color: -fx-col-5;
+    -fx-background-radius: 4;
+    -fx-font-size: 14;
+}

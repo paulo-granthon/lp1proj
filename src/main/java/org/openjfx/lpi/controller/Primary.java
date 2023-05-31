@@ -22,10 +22,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.FlowPane;
 
 public class Primary {
 
-    // Tab Pessoa
+    // Tab Person
     @FXML private TextField tf_person_name;
     @FXML private TextField tf_person_gender;
     @FXML private DatePicker dp_person_birth;
@@ -54,10 +55,15 @@ public class Primary {
     @FXML private TextField tf_trip_person;
     @FXML private TextField tf_trip_vehicle;
     @FXML private TextField tf_trip_place;
+
+    @FXML private FlowPane lv_trip_people;
+    @FXML private FlowPane lv_trip_places;
+
     @FXML private TableView<TripWrapper> table_trip;
     @FXML private TableColumn<TripWrapper, String> col_trip_people;
     @FXML private TableColumn<TripWrapper, String> col_trip_vehicle;
     @FXML private TableColumn<TripWrapper, String> col_trip_place;
+
 
     public void initialize () {
 
@@ -117,21 +123,21 @@ public class Primary {
     private void updateTablePerson (Connection connection) {
         try {
             boolean commitAndClose = connection == null ? (connection = SQLConnection.connect()) != null : false;
-            ResultSet queryPessoa = connection.prepareStatement("SELECT * FROM person").executeQuery();
-            List<Person> pessoas = new ArrayList<>();
-            while (queryPessoa.next()) {
-                pessoas.add(new Person(
-                    queryPessoa.getString("prsn_name"),
-                    queryPessoa.getString("prsn_gender"),
-                    queryPessoa.getDate("prsn_birth")
+            ResultSet queryPerson = connection.prepareStatement("SELECT * FROM person").executeQuery();
+            List<Person> Persons = new ArrayList<>();
+            while (queryPerson.next()) {
+                Persons.add(new Person(
+                    queryPerson.getString("prsn_name"),
+                    queryPerson.getString("prsn_gender"),
+                    queryPerson.getDate("prsn_birth")
                 ));
             }
             if (commitAndClose && connection != null) {
                 connection.commit();
                 connection.close();
-                System.out.println("oi close pessoa");
+                System.out.println("oi close Person");
             }
-            table_person.setItems(FXCollections.observableArrayList((pessoas)));
+            table_person.setItems(FXCollections.observableArrayList((Persons)));
             table_person.refresh();
         } catch (Exception e) {
             e.printStackTrace();
@@ -140,13 +146,13 @@ public class Primary {
     private void updateTablePlace (Connection connection) {
         try {
             boolean commitAndClose = connection == null ? (connection = SQLConnection.connect()) != null : false;
-            ResultSet queryLugar = connection.prepareStatement("SELECT * FROM place").executeQuery();
-            List<Place> lugares = new ArrayList<>();
-            while (queryLugar.next()) {
-                lugares.add(new Place(
-                    queryLugar.getString("plce_country"),
-                    queryLugar.getString("plce_state"),
-                    queryLugar.getString("plce_city")
+            ResultSet queryPlace = connection.prepareStatement("SELECT * FROM place").executeQuery();
+            List<Place> Placees = new ArrayList<>();
+            while (queryPlace.next()) {
+                Placees.add(new Place(
+                    queryPlace.getString("plce_country"),
+                    queryPlace.getString("plce_state"),
+                    queryPlace.getString("plce_city")
                 ));
             }
             if (commitAndClose && connection != null) {
@@ -154,7 +160,7 @@ public class Primary {
                 connection.close();
                 System.out.println("oi close place");
             }
-            table_place.setItems(FXCollections.observableArrayList((lugares)));
+            table_place.setItems(FXCollections.observableArrayList((Placees)));
             table_place.refresh();
         } catch (Exception e) {
             e.printStackTrace();
@@ -163,20 +169,20 @@ public class Primary {
     private void updateTableVehicle (Connection connection) {
         try {
             boolean commitAndClose = connection == null ? (connection = SQLConnection.connect()) != null : false;
-            ResultSet queryVeiculo = connection.prepareStatement("SELECT * FROM vehicle").executeQuery();
-            List<Vehicle> veiculos = new ArrayList<>();
-            while (queryVeiculo.next()) {
-                veiculos.add(new Vehicle(
-                    queryVeiculo.getString("vhcl_model"),
-                    queryVeiculo.getInt("vhcl_year")
+            ResultSet queryVehicle = connection.prepareStatement("SELECT * FROM vehicle").executeQuery();
+            List<Vehicle> Vehicles = new ArrayList<>();
+            while (queryVehicle.next()) {
+                Vehicles.add(new Vehicle(
+                    queryVehicle.getString("vhcl_model"),
+                    queryVehicle.getInt("vhcl_year")
                 ));
             }
             if (commitAndClose && connection != null) {
                 connection.commit();
                 connection.close();
-                System.out.println("oi close veiculo");
+                System.out.println("oi close Vehicle");
             }
-            table_vehicle.setItems(FXCollections.observableArrayList((veiculos)));
+            table_vehicle.setItems(FXCollections.observableArrayList((Vehicles)));
             table_vehicle.refresh();
         } catch (Exception e) {
             e.printStackTrace();
@@ -186,7 +192,7 @@ public class Primary {
     @FXML
     void addPerson (ActionEvent e) {
         try {
-            Query.insertPessoa(new Person(
+            Query.insertPerson(new Person(
                 WordUtils.capitalizeFully(tf_person_name.getText()),
                 WordUtils.capitalizeFully(tf_person_gender.getText()),
                 Date.valueOf(dp_person_birth.getValue())
@@ -203,7 +209,7 @@ public class Primary {
     @FXML
     void addPlace (ActionEvent e) {
         try {
-            Query.insertLugar(new Place(
+            Query.insertPlace(new Place(
                 WordUtils.capitalizeFully(tf_place_country.getText()),
                 WordUtils.capitalizeFully(tf_place_state.getText()),
                 WordUtils.capitalizeFully(tf_place_city.getText())
@@ -220,7 +226,7 @@ public class Primary {
     @FXML
     void addVehicle (ActionEvent e) {
         try {
-            Query.insertVeiculo(new Vehicle(
+            Query.insertVehicle(new Vehicle(
                 WordUtils.capitalizeFully(tf_vehicle_model.getText()),
                 Integer.parseInt(tf_vehicle_year.getText())
             ));

@@ -24,9 +24,20 @@ CREATE TABLE IF NOT EXISTS vehicle (
 
 CREATE TABLE IF NOT EXISTS trip (
     id SERIAL NOT NULL,
-    grp_id INT NOT NULL,
     vhcl_id INT NOT NULL,
-    group_id INT NOT NULL,
     CONSTRAINT trip_pkey PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS traveler (
+    id SERIAL NOT NULL,
+    trip_id INT NOT NULL,
+    prsn_id INT NOT NULL,
+    CONSTRAINT traveler_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS parade (
+    id SERIAL NOT NULL,
+    trip_id INT NOT NULL,
+    plce_id INT NOT NULL,
+    CONSTRAINT parade_pkey PRIMARY KEY (id)
+);

@@ -1,6 +1,8 @@
 package org.openjfx.lpi.data;
 
-public class Place extends Record {
+import org.openjfx.lpi.controller.utils.HasDisplayName;
+
+public class Place extends Record implements HasDisplayName {
     String country;
     String state;
     String city;
@@ -13,6 +15,10 @@ public class Place extends Record {
         this.country = country;
         this.state = state;
         this.city = city;
+    }
+
+    public String getDisplayName() {
+        return new StringBuilder(getCity()).append(", ").append(getState()).append(" - ").append(getCountry()).toString();
     }
 
     public String getCountry() { return country; }

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import org.openjfx.lpi.data.Place;
 import org.openjfx.lpi.data.Person;
@@ -25,7 +26,7 @@ public class Query {
         }
     }
 
-    public static void insertPessoa (Person p) {
+    public static void insertPerson (Person p) {
         try {
             Connection conexao = SQLConnection.connect();
             PreparedStatement statement = conexao.prepareStatement("INSERT INTO person (prsn_name, prsn_gender, prsn_birth) values (?, ?, ?)");
@@ -40,7 +41,7 @@ public class Query {
         }
     }
 
-    public static void insertLugar (Place p) {
+    public static void insertPlace (Place p) {
         try {
             Connection conexao = SQLConnection.connect();
             PreparedStatement statement = conexao.prepareStatement("INSERT INTO place (plce_country, plce_state, plce_city) values (?, ?, ?)");
@@ -55,13 +56,40 @@ public class Query {
         }
     }
 
-    public static void insertVeiculo (Vehicle p) {
+    public static void insertVehicle (Vehicle p) {
         try {
             Connection conexao = SQLConnection.connect();
             PreparedStatement statement = conexao.prepareStatement("INSERT INTO vehicle (vhcl_model, vhcl_year) values (?, ?)");
             statement.setString(1, p.getModel());
             statement.setInt(2, p.getYear());
             statement.execute();
+            conexao.commit();
+            conexao.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void insertTrip (int[] people, int vhcl_id, int[] places) {
+        try {
+            Connection conexao = SQLConnection.connect();
+            PreparedStatement statement = conexao.prepareStatement("INSERT INTO trip (vhcl_id) values (?) RETURNING id");
+            statement.setInt(1, vhcl_id);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            int trip_id = resultSet.getInt(1);
+            for (int i = 0; i < people.length; i++) {
+                statement = conexao.prepareStatement("INSERT INTO traveler (trip_id, prsn_id) values (?, ?)");
+                statement.setInt(trip_id, 1);
+                statement.setInt(people[i], 2);
+                statement.execute();
+            }
+            for (int i = 0; i < places.length; i++) {
+                statement = conexao.prepareStatement("INSERT INTO parade (trip_id, plce_id) values (?, ?)");
+                statement.setInt(trip_id, 1);
+                statement.setInt(places[i], 2);
+                statement.execute();
+            }
             conexao.commit();
             conexao.close();
         } catch (Exception e) {

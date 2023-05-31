@@ -1,9 +1,12 @@
 package org.openjfx.lpi.data;
 
 import java.text.SimpleDateFormat;
+
+import org.openjfx.lpi.controller.utils.HasDisplayName;
+
 import java.sql.Date;
 
-public class Person extends Record {
+public class Person extends Record implements HasDisplayName {
 
     String name;
     String gender;
@@ -18,6 +21,8 @@ public class Person extends Record {
         this.gender = gender;
         this.birth = birth;
     }
+
+    public String getDisplayName() { return getName(); }
 
     public String getName() { return name; }
     public String getGender() { return gender; }
