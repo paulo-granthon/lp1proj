@@ -266,3 +266,34 @@
     -fx-background-radius: 4;
     -fx-font-size: 14;
 }
+
+.add-btn:hover {
+    -fx-padding: -2 6 -2 6;
+    -fx-background-color: -fx-col-6;
+    -fx-background-radius: 4;
+    -fx-font-size: 14;
+    -fx-background-insets: -1;
+    -fx-border-insets: -2;
+    -fx-background-color: -fx-col-btn-focus;
+    -fx-border-radius: 4 4 4 4;
+    -fx-border-width: 2;
+    -fx-border-color: -fx-col-5;
+}
+
+.add-btn {
+    -fx-padding: -2 6 -2 6;
+    -fx-background-color: -fx-col-5;
+    -fx-background-radius: 4;
+    -fx-font-size: 14;
+}
+
+.add-btn:hover {
+    -fx-padding: -2 6 -2 6;
+    -fx-background-color: -fx-col-w;
+    -fx-background-radius: 4;
+    -fx-background-insets: -1;
+    -fx-border-insets: -2;
+    -fx-border-radius: 4 4 4 4;
+    -fx-border-width: 2;
+    -fx-border-color: -fx-col-5;
+}
