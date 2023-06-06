@@ -1,10 +1,16 @@
 package org.openjfx.lpi.db;
 
 public enum Table {
-    Person  ("person",  new String[] { "id", "prsn_name", "prsn_gender", "prsn_birth" }),
-    Place   ("place",   new String[] { "id", "plce_country", "plce_state", "plce_city" }),
-    Vehicle ("vehicle", new String[] { "id", "vhcl_model", "vhcl_year" }),
-    Trip    ("trip",    new String[] { "id" }),
+
+    // Entities
+    Person   ("person",   new String[] { "id", "prsn_name", "prsn_gender", "prsn_birth" }),
+    Place    ("place",    new String[] { "id", "plce_country", "plce_state", "plce_city" }),
+    Vehicle  ("vehicle",  new String[] { "id", "vhcl_model", "vhcl_year" }),
+    Trip     ("trip",     new String[] { "id", "vhcl_id" }),
+
+    // Relations
+    Traveler ("traveler", new String[] { "id", "trip_id", "prsn_id" }),
+    Parade   ("parade",   new String[] { "id", "trip_id", "plce_id" }),
     ;
 
     private String name;
@@ -26,5 +32,12 @@ public enum Table {
         return sb.toString();
     }
 
+    public final StringBuilder getSelectQuery() {
+        return new StringBuilder("SELECT * FROM ").append(name);
+    }
+
+    public final String getSelectAllQuery () {
+        return getSelectQuery().toString();
+    }
 
 }

@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<TabPane depthTest="DISABLE" focusTraversable="false" maxHeight="1.8" maxWidth="1.8" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="800.0" rotateGraphic="true" side="LEFT" stylesheets="@css/styles.css" tabClosingPolicy="UNAVAILABLE" tabMaxWidth="24.0" tabMinHeight="80.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.lpi.controller.Primary"> 
+<TabPane depthTest="DISABLE" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="920.0" rotateGraphic="true" side="LEFT" stylesheets="@css/styles.css" tabClosingPolicy="UNAVAILABLE" tabMaxWidth="24.0" tabMinHeight="80.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.lpi.controller.Primary"> 
   <tabs>
     <Tab closable="false">
          <content>
@@ -28,7 +28,7 @@
                               <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="8.0" stylesheets="@css/styles.css" AnchorPane.leftAnchor="0.0">
                                  <children>
                                     <Label stylesheets="@css/styles.css" text="Nome:" />
-                                    <TextField fx:id="tf_person_name" maxWidth="128.0" stylesheets="@css/styles.css" text="asfaf" />
+                                    <TextField fx:id="tf_person_name" maxWidth="128.0" stylesheets="@css/styles.css" />
                                     <Label stylesheets="@css/styles.css" text="Genero:" />
                                     <TextField fx:id="tf_person_gender" maxWidth="128.0" stylesheets="@css/styles.css" />
                                     <Label stylesheets="@css/styles.css" text="Nascimento:" />
@@ -66,7 +66,7 @@
             </TitledPane>
          </content>
          <graphic>
-            <AnchorPane maxWidth="1.8" stylesheets="@css/styles.css">
+            <AnchorPane maxWidth="1.7976931348623157E308" stylesheets="@css/styles.css">
                <children>
                   <Label rotate="90.0" text="Person" />
                </children>
@@ -122,7 +122,7 @@
             </TitledPane>
          </content>
          <graphic>
-            <AnchorPane maxWidth="1.8" stylesheets="@css/styles.css">
+            <AnchorPane maxWidth="1.7976931348623157E308" stylesheets="@css/styles.css">
                <children>
                   <Label rotate="90.0" stylesheets="@css/styles.css" text="Lugar" />
                </children>
@@ -175,7 +175,7 @@
             </TitledPane>
          </content>
          <graphic>
-            <AnchorPane maxWidth="1.8" stylesheets="@css/styles.css">
+            <AnchorPane maxWidth="1.7976931348623157E308" stylesheets="@css/styles.css">
                <children>
                   <Label rotate="90.0" stylesheets="@css/styles.css" text="Veículo" />
                </children>
@@ -198,10 +198,10 @@
                                              <children>
                                                 <Label stylesheets="@css/styles.css" text="Person:" />
                                                 <TextField fx:id="tf_trip_person" maxWidth="96.0" stylesheets="@css/styles.css" />
-                                                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="add-btn" text="+" />
+                                                <Button onAction="#addTripPerson" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="add-btn" text="+" />
                                              </children>
                                           </HBox>
-                                          <FlowPane fx:id="lv_trip_people" prefWrapLength="180.0" />
+                                          <FlowPane fx:id="fp_trip_people" prefWrapLength="180.0" />
                                        </children>
                                     </VBox>
                                     <Label stylesheets="@css/styles.css" text="Veículo:" />
@@ -212,15 +212,15 @@
                                              <children>
                                                 <Label stylesheets="@css/styles.css" text="Lugar:" />
                                                 <TextField fx:id="tf_trip_place" maxWidth="96.0" stylesheets="@css/styles.css" />
-                                                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="add-btn" text="+" />
+                                                <Button onAction="#addTripPlace" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="add-btn" text="+" />
                                              </children>
                                           </HBox>
-                                          <FlowPane fx:id="lv_trip_places" prefWrapLength="180.0" />
+                                          <FlowPane fx:id="fp_trip_places" prefWrapLength="180.0" />
                                        </children>
                                     </VBox>
                                  </children>
                               </HBox>
-                              <Button layoutX="540.0" mnemonicParsing="false" onAction="#addVehicle" prefWidth="88.0" stylesheets="@css/styles.css" text="+" AnchorPane.rightAnchor="8.0" />
+                              <Button layoutX="540.0" mnemonicParsing="false" onAction="#addTrip" prefWidth="88.0" stylesheets="@css/styles.css" text="+" AnchorPane.rightAnchor="8.0" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" />
@@ -228,9 +228,9 @@
                         </AnchorPane>
                         <TableView fx:id="table_trip" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@css/styles.css" VBox.vgrow="ALWAYS">
                            <columns>
-                              <TableColumn fx:id="col_trip_people" text="Person" />
+                              <TableColumn fx:id="col_trip_people" text="Pessoas" />
                               <TableColumn fx:id="col_trip_vehicle" text="Veículo" />
-                              <TableColumn fx:id="col_trip_place" text="Lugar" />
+                              <TableColumn fx:id="col_trip_place" text="Rota" />
                            </columns>
                            <VBox.margin>
                               <Insets bottom="-8.0" left="-8.0" right="-8.0" />
@@ -251,7 +251,7 @@
             </TitledPane>
          </content>
          <graphic>
-            <AnchorPane maxWidth="1.8" stylesheets="@css/styles.css">
+            <AnchorPane maxWidth="1.7976931348623157E308" stylesheets="@css/styles.css">
                <children>
                   <Label rotate="90.0" stylesheets="@css/styles.css" text="Viagem" />
                </children>

@@ -1,23 +1,33 @@
-package org.openjfx.lpi.data;
+package org.openjfx.lpi.model;
 
-import org.openjfx.lpi.controller.utils.HasDisplayName;
+import org.openjfx.lpi.controller.utils.HasName;
 
-public class Place extends Record implements HasDisplayName {
-    String country;
-    String state;
-    String city;
+public class Place extends Record implements HasName {
+    private String country;
+    private String state;
+    private String city;
 
     public Place (
+        Integer id,
         String country,
         String state,
         String city
     ) {
+        super(id);
         this.country = country;
         this.state = state;
         this.city = city;
     }
 
-    public String getDisplayName() {
+    public Place (String country, String state, String city) {
+        this(null, country, state, city);
+    }
+
+    public Place (int id, String country, String state, String city) {
+        this((Integer)id, country, state, city);
+    }
+
+    public String getName() {
         return new StringBuilder(getCity()).append(", ").append(getState()).append(" - ").append(getCountry()).toString();
     }
 

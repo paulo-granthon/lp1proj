@@ -9,14 +9,15 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class App extends Application {
-    
-    @Override
-    public void start(Stage stage) throws IOException {
 
-        // org.openjfx.lpi.db.Query.executeSqlFile("SQL/tabelas.sql");
+    @Override public void start(Stage stage) throws IOException {
+
+        org.openjfx.lpi.db.Query.executeSqlFile("SQL/tabelas.sql");
 
         try {
-            stage.setScene(new Scene(loadFXML("primary")));
+            Scene scene = new Scene(loadFXML("primary"));
+            scene.getStylesheets().add(App.class.getResource("css/styles.css").toExternalForm());
+            stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

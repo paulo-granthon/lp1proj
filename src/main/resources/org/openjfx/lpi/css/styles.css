@@ -1,5 +1,5 @@
 /* Global */
-  
+
 * {
     -fx-col-b: #000;
 	-fx-col-0: #333;
@@ -12,9 +12,13 @@
     -fx-col-w: #eee;
 	-fx-col-btn: #36d636;
 	-fx-col-btn-focus: #56fa56;
+	-fx-col-btn-2: #e24848;
+	-fx-col-btn-2-focus: #f98e8e;
+
 }
 
 .root{
+    -fx-background-color: -fx-col-5;
     -fx-text-background-color: -fx-col-w;
 }
 
@@ -37,7 +41,7 @@
     -fx-background-color: -fx-col-3;
     -fx-background-insets: 1 2;
     -fx-background-radius: 32 4 16 4;
-    
+
     -fx-border-color: -fx-col-4;
     -fx-border-insets: 0 2;
     -fx-border-radius: 32 4 16 4;
@@ -76,8 +80,8 @@
     -fx-background-color: -fx-col-5;
     -fx-background-radius: 16 4 0 0;
     -fx-border-width: 0;
-    -fx-font-weight: bold;
     -fx-font-size: 14;
+    -fx-font-weight: bold;
 }
 
 /* TitledPane > Content */
@@ -248,6 +252,7 @@
     -fx-background-color: -fx-col-btn;
     -fx-background-radius: 12 4 12 4;
     -fx-font-size: 14;
+    -fx-font-weight: bold;
 }
 
 .button:hover {
@@ -265,26 +270,7 @@
     -fx-background-color: -fx-col-5;
     -fx-background-radius: 4;
     -fx-font-size: 14;
-}
-
-.add-btn:hover {
-    -fx-padding: -2 6 -2 6;
-    -fx-background-color: -fx-col-6;
-    -fx-background-radius: 4;
-    -fx-font-size: 14;
-    -fx-background-insets: -1;
-    -fx-border-insets: -2;
-    -fx-background-color: -fx-col-btn-focus;
-    -fx-border-radius: 4 4 4 4;
-    -fx-border-width: 2;
-    -fx-border-color: -fx-col-5;
-}
-
-.add-btn {
-    -fx-padding: -2 6 -2 6;
-    -fx-background-color: -fx-col-5;
-    -fx-background-radius: 4;
-    -fx-font-size: 14;
+    -fx-font-weight: bold;
 }
 
 .add-btn:hover {
@@ -293,7 +279,39 @@
     -fx-background-radius: 4;
     -fx-background-insets: -1;
     -fx-border-insets: -2;
-    -fx-border-radius: 4 4 4 4;
+    -fx-border-radius: 4;
     -fx-border-width: 2;
     -fx-border-color: -fx-col-5;
+}
+
+.remove-btn {
+    -fx-padding: -2 6 -2 6;
+    -fx-background-color: -fx-col-btn-2;
+    -fx-background-radius: 16;
+    -fx-font-size: 10;
+    -fx-font-weight: bold;
+}
+
+.remove-btn:hover {
+    -fx-padding: -2 6 -2 6;
+    -fx-background-color: -fx-col-btn-2-focus;
+    -fx-background-radius: 16;
+    -fx-background-insets: -1;
+    -fx-border-insets: -2;
+    -fx-border-radius: 16;
+    -fx-border-width: 2;
+    -fx-border-color: -fx-col-btn-2;
+}
+
+.list-view {
+    -fx-background-color: transparent;
+}
+
+.list-cell {
+    -fx-background-color: -fx-col-5;
+}
+
+.list-cell:hover {
+    -fx-background-color: -fx-col-6;
+    -fx-text-background-color: -fx-col-b;
 }
